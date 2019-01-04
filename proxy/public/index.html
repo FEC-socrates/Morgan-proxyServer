@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/style.css">
+    <link href="http://localhost:8080/styles.css" rel="stylesheet">
+    <link href="http://localhost:3456/styles.css" rel="stylesheet">
+    <link href="http://localhost:3456/odometer-theme-default.css" rel="stylesheet">
     <title>FEC Demo</title>
   </head>
   <body>
@@ -11,27 +14,12 @@
     <div id="about"></div>
     <script src="/lib/react.development.js"></script>
     <script src="/lib/react-dom.development.js"></script>
-    <script src="http://localhost:3333/bundle.js"></script>
-    <script src="http://localhost:3456/bundle.js"></script>
-    <script src="http://localhost:8080/bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/styled-components/3.4.10/styled-components.min.js"></script>
+    <script src="/buySell.js"></script>
+    <script src="/lineGraph.js"></script>
+    <script src="/aboutAndNews.js"></script>
 
     <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
 
   </body>
 </html>
-
-
-<!--  <script>
-      ReactDOM.render(
-        React.createElement('BuySell'),
-        document.getElementById('buysell')
-      );
-      ReactDOM.render(
-        React.createElement('lineGraph'),
-        document.getElementById('lineGraph')
-      );
-      ReactDOM.render(
-        React.createElement('about'),
-        document.getElementById('about')
-      );
-    </script> -->
