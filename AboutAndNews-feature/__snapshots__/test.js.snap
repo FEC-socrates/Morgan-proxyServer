@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    <div />
+    <section>
+      <div>
+        <div>
+          <div>
+            CEO
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Employees
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Headquarters
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Founded
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Market Cap
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Price-Earnings Ratio
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Dividend Yield
+          </div>
+          <div />
+        </div>
+        <div>
+          <div>
+            Average Volume
+          </div>
+          <div />
+        </div>
+      </div>
+    </section>
+  </div>
+  <div />
+</div>
+`;
