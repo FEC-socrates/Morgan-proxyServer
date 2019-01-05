@@ -1,8 +1,11 @@
 const faker = require('faker');
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('robinhood', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql'
+const sequelize = new Sequelize('fec', 'root', 'password', {
+  host: 'fec.cbc6y6elvotl.us-east-1.rds.amazonaws.com',
+  port: 3306,
+  dialect: 'mysql',
+  dialectOptions: {
+    ssl: 'Amazon RDS'
+  },
 });
 
 sequelize

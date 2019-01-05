@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use('/', express.static('./public/'));
 app.use(/\/\d+\//, express.static('./public/'));
 
-//locahost/8080/27/
 
 app.get('/api/about:id', (req, res) => {
   var id = req.params.id.split(':');

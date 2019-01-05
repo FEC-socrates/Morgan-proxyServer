@@ -206,7 +206,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:3333/transactions').then(res => {
+    axios.get('http://robinshoodbuysell-env.a2uekzcuub.us-east-2.elasticbeanstalk.com/transactions').then(res => {
       this.setState({
         transactions: res.data
       })
@@ -216,24 +216,24 @@ class App extends React.Component {
   render() {
     return (
       <Body>
-      <RootDiv>
-        <Div>
-          <Main>
-            <MainContainer>
-              <Row>
-                <ColL>
-                <History transactions={this.state.transactions}/>
-                </ColL>
-                <ColR>
-                <SideBarDiv>
-                <BuySell />
-                </SideBarDiv>
-                </ColR>
-              </Row>
-            </MainContainer>
-        </Main>
-        </Div>
-      </RootDiv>
+        <RootDiv>
+          <Div>
+            <Main>
+              <MainContainer>
+                <Row>
+                  <ColL>
+                    <History transactions={this.state.transactions} />
+                  </ColL>
+                  <ColR>
+                    <SideBarDiv>
+                      <BuySell />
+                    </SideBarDiv>
+                  </ColR>
+                </Row>
+              </MainContainer>
+            </Main>
+          </Div>
+        </RootDiv>
       </Body>
     )
   }

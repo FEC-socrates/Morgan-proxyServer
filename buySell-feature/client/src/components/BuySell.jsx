@@ -1097,37 +1097,37 @@ const newOne = styled.div`
 
 class BuySell extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-        stockName: '',
-        stockTicker: '',
-        currentPrice: 0,
-        shares: 0,
-        estimatedCost: 0,
-        orderDescription: 'Estimated Cost',
-        userShares: 103,
-        userBalance: 246.42,
-        sharesBalance: ``,
-        borderTopColor: '',
-        borderBottomColor: '',
-        borderLeftColor: '',
-        borderRightColor: '',
-        clickBorderBottomColor: '',
-        color: '',
-        marginInlineEnd: '',
-        marginRight: '',
-        width: '',
-        isSelectedBuy: true,
-        isSelectedSell: false
-      }
-      this.buyStock = this.buyStock.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.buySellClick = this.buySellClick.bind(this);
-      this.sharesClick = this.sharesClick.bind(this);
-      this.sharesBlur = this.sharesBlur.bind(this);
-      this.sharesHover = this.sharesHover.bind(this);
-      this.sharesLeaveHover = this.sharesLeaveHover.bind(this);
-      this.changeStock = this.changeStock.bind(this);
+    super(props);
+    this.state = {
+      stockName: '',
+      stockTicker: '',
+      currentPrice: 0,
+      shares: 0,
+      estimatedCost: 0,
+      orderDescription: 'Estimated Cost',
+      userShares: 103,
+      userBalance: 246.42,
+      sharesBalance: ``,
+      borderTopColor: '',
+      borderBottomColor: '',
+      borderLeftColor: '',
+      borderRightColor: '',
+      clickBorderBottomColor: '',
+      color: '',
+      marginInlineEnd: '',
+      marginRight: '',
+      width: '',
+      isSelectedBuy: true,
+      isSelectedSell: false
+    }
+    this.buyStock = this.buyStock.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.buySellClick = this.buySellClick.bind(this);
+    this.sharesClick = this.sharesClick.bind(this);
+    this.sharesBlur = this.sharesBlur.bind(this);
+    this.sharesHover = this.sharesHover.bind(this);
+    this.sharesLeaveHover = this.sharesLeaveHover.bind(this);
+    this.changeStock = this.changeStock.bind(this);
   }
 
   componentWillMount() {
@@ -1143,13 +1143,13 @@ class BuySell extends React.Component {
   }
 
   changeStock() {
-    axios.get('http://localhost:3333/stocks').then(res => {
+    axios.get('http://robinshoodbuysell-env.a2uekzcuub.us-east-2.elasticbeanstalk.com/stocks').then(res => {
       const stocks = res.data;
-      const id = parseInt(window.location.pathname.slice(1, window.location.pathname.length-1))
+      const id = parseInt(window.location.pathname.slice(1, window.location.pathname.length - 1))
       var urlStock = {}
-      for (var i=0; i < stocks.length; i++) {
+      for (var i = 0; i < stocks.length; i++) {
         if (stocks[i]._id === id) {
-            urlStock = stocks[i];
+          urlStock = stocks[i];
         }
       }
       console.log('STOCCCCCCKK', urlStock, id)
@@ -1162,7 +1162,7 @@ class BuySell extends React.Component {
   }
 
   sharesHover() {
-    if (this.state.borderBottomColor !== 'rgb(33, 206, 153)'){
+    if (this.state.borderBottomColor !== 'rgb(33, 206, 153)') {
       this.setState({
         borderTopColor: 'rgb(132, 132, 134)',
         borderBottomColor: 'rgb(132, 132, 134)',
@@ -1173,7 +1173,7 @@ class BuySell extends React.Component {
   }
 
   sharesLeaveHover() {
-    if (this.state.borderBottomColor !== 'rgb(33, 206, 153)'){
+    if (this.state.borderBottomColor !== 'rgb(33, 206, 153)') {
       this.setState({
         borderTopColor: 'rgb(23, 23, 24)',
         borderBottomColor: 'rgb(23, 23, 24)',
@@ -1240,100 +1240,100 @@ class BuySell extends React.Component {
       quantity: this.state.shares,
       orderType: orderType
     };
-    if (this.state.shares !== 0){
+    if (this.state.shares !== 0) {
       axios.post('http://localhost:3333/transactions', transaction)
-      .then(function (response) {
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+        .then(function (response) {
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
     }
   }
 
   render() {
-      const highlightedBuy = this.state.isSelectedBuy ?
-        <BuySellSelected style={{borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width}} id='buy' onClick={this.buySellClick}>
+    const highlightedBuy = this.state.isSelectedBuy ?
+      <BuySellSelected style={{ borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width }} id='buy' onClick={this.buySellClick}>
         Buy {this.state.stockTicker}
-        </BuySellSelected> :
-        <BuySellUnselected style={{borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width}} id='buy' onClick={this.buySellClick}>
+      </BuySellSelected> :
+      <BuySellUnselected style={{ borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width }} id='buy' onClick={this.buySellClick}>
         Buy {this.state.stockTicker}
-        </BuySellUnselected>
-      const highlightedSell = this.state.isSelectedSell ?
-        <BuySellSelected style={{borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width}} id='sell' onClick={this.buySellClick}>
+      </BuySellUnselected>
+    const highlightedSell = this.state.isSelectedSell ?
+      <BuySellSelected style={{ borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width }} id='sell' onClick={this.buySellClick}>
         Sell {this.state.stockTicker}
-        </BuySellSelected> :
-        <BuySellUnselected style={{borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width}} id='sell' onClick={this.buySellClick}>
+      </BuySellSelected> :
+      <BuySellUnselected style={{ borderBottomColor: this.state.clickBorderBottomColor, color: this.state.color, marginInlineEnd: this.state.marginInlineEnd, marginRight: this.state.marginRight, width: this.state.width }} id='sell' onClick={this.buySellClick}>
         Sell {this.state.stockTicker}
-        </BuySellUnselected>
+      </BuySellUnselected>
     return (
-    <Form>
-      <Header>
-        <TitleHeader>
-          <BuySellDiv>
-            <BuySellDiv2 onClick={this.parentClick}>
-              <BuyDiv>
-                <BuyDiv2>
-                  {highlightedBuy}
-                </BuyDiv2>
-              </BuyDiv>
-              <SellDiv>
-                <SellDiv2>
-                  {highlightedSell}
-                </SellDiv2>
-              </SellDiv>
-            </BuySellDiv2>
-          </BuySellDiv>
-        </TitleHeader>
-      </Header>
-      <Body>
-        <MainBodyDiv>
-        <FormGroup>
-          <Label>
-            <Shares>Shares</Shares>
-            <SharesInputDiv>
-              <SharesInput style={{borderTopColor: this.state.borderTopColor, borderBottomColor: this.state.borderBottomColor, borderLeftColor: this.state.borderLeftColor, borderRightColor: this.state.borderRightColor}} placeholder='0' onChange={this.handleChange} onClick={this.sharesClick} onBlur={this.sharesBlur} onMouseOver={this.sharesHover} onMouseLeave={this.sharesLeaveHover}></SharesInput>
-            </SharesInputDiv>
-          </Label>
-        </FormGroup>
-        <MarketPriceRow>
-          <MarketPriceDiv1>
-            <MarketPriceDiv2>
-              <MarketPrice>Market Price</MarketPrice>
-            </MarketPriceDiv2>
-          </MarketPriceDiv1>
-          <MarketPriceSpan>{this.state.currentPrice}</MarketPriceSpan>
-        </MarketPriceRow>
-        <EstimatedCostRow>
-          <EstimatedCostLabel>
-            <ECDiv1>{this.state.orderDescription}</ECDiv1>
-            <ECDiv2>{this.state.estimatedCost}</ECDiv2>
-          </EstimatedCostLabel>
-        </EstimatedCostRow>
-        </MainBodyDiv>
-        <OrderTimeRow>
-          <CheckBoxDiv>
-            <CheckBoxDiv2>
-              <SVG>
-                <G>
-                  <Rect1></Rect1>
-                  <Rect2></Rect2>
-                </G>
-              </SVG>
-            </CheckBoxDiv2>
-          </CheckBoxDiv>
-          <OrderTimeSpan>This order should only execute during normal market hours.</OrderTimeSpan>
-        </OrderTimeRow>
-        <ButtonDiv>
-          <ButtonDiv2>
-            <ButtonDiv3>
-            <Button onClick={this.buyStock}>Review Order</Button>
-            </ButtonDiv3>
-          </ButtonDiv2>
-        </ButtonDiv>
-        <BuyingPowerDiv>{this.state.sharesBalance}
-        </BuyingPowerDiv>
-      </Body>
-    </Form>
+      <Form>
+        <Header>
+          <TitleHeader>
+            <BuySellDiv>
+              <BuySellDiv2 onClick={this.parentClick}>
+                <BuyDiv>
+                  <BuyDiv2>
+                    {highlightedBuy}
+                  </BuyDiv2>
+                </BuyDiv>
+                <SellDiv>
+                  <SellDiv2>
+                    {highlightedSell}
+                  </SellDiv2>
+                </SellDiv>
+              </BuySellDiv2>
+            </BuySellDiv>
+          </TitleHeader>
+        </Header>
+        <Body>
+          <MainBodyDiv>
+            <FormGroup>
+              <Label>
+                <Shares>Shares</Shares>
+                <SharesInputDiv>
+                  <SharesInput style={{ borderTopColor: this.state.borderTopColor, borderBottomColor: this.state.borderBottomColor, borderLeftColor: this.state.borderLeftColor, borderRightColor: this.state.borderRightColor }} placeholder='0' onChange={this.handleChange} onClick={this.sharesClick} onBlur={this.sharesBlur} onMouseOver={this.sharesHover} onMouseLeave={this.sharesLeaveHover}></SharesInput>
+                </SharesInputDiv>
+              </Label>
+            </FormGroup>
+            <MarketPriceRow>
+              <MarketPriceDiv1>
+                <MarketPriceDiv2>
+                  <MarketPrice>Market Price</MarketPrice>
+                </MarketPriceDiv2>
+              </MarketPriceDiv1>
+              <MarketPriceSpan>{this.state.currentPrice}</MarketPriceSpan>
+            </MarketPriceRow>
+            <EstimatedCostRow>
+              <EstimatedCostLabel>
+                <ECDiv1>{this.state.orderDescription}</ECDiv1>
+                <ECDiv2>{this.state.estimatedCost}</ECDiv2>
+              </EstimatedCostLabel>
+            </EstimatedCostRow>
+          </MainBodyDiv>
+          <OrderTimeRow>
+            <CheckBoxDiv>
+              <CheckBoxDiv2>
+                <SVG>
+                  <G>
+                    <Rect1></Rect1>
+                    <Rect2></Rect2>
+                  </G>
+                </SVG>
+              </CheckBoxDiv2>
+            </CheckBoxDiv>
+            <OrderTimeSpan>This order should only execute during normal market hours.</OrderTimeSpan>
+          </OrderTimeRow>
+          <ButtonDiv>
+            <ButtonDiv2>
+              <ButtonDiv3>
+                <Button onClick={this.buyStock}>Review Order</Button>
+              </ButtonDiv3>
+            </ButtonDiv2>
+          </ButtonDiv>
+          <BuyingPowerDiv>{this.state.sharesBalance}
+          </BuyingPowerDiv>
+        </Body>
+      </Form>
     );
   }
 };

@@ -110,35 +110,35 @@ class App extends React.Component {
   }
 
   setTicker(string, callback) {
-    this.setState({ticker: string}, callback);
+    this.setState({ ticker: string }, callback);
   }
 
   setCompanyName(name) {
-    this.setState({companyName: name});
+    this.setState({ companyName: name });
   }
 
   setSelectedPrice(num) {
-    this.setState({selectedPrice: num});
+    this.setState({ selectedPrice: num });
   }
 
   setLatestPrice(num) {
-    this.setState({latestPrice: num});
+    this.setState({ latestPrice: num });
   }
 
   setLatestAfterHours(num) {
-    this.setState({latestAfterHours: num});
+    this.setState({ latestAfterHours: num });
   }
 
   setRefStartPrice(num) {
-    this.setState({refStartPrice: num});
+    this.setState({ refStartPrice: num });
   }
 
   setChangeCaption(string) {
-    this.setState({changeCaption: string});
+    this.setState({ changeCaption: string });
   }
 
   setDefaultChangeCaption(string) {
-    this.setState({defaultChangeCaption: string});
+    this.setState({ defaultChangeCaption: string });
   }
 
   handleMouseLeaveChart() {
@@ -155,14 +155,14 @@ class App extends React.Component {
   }
 
   requestData(path, callback) {
-  // Makes a get request to the provided path for a randomly generated stock, and then invokes any provided callback
+    // Makes a get request to the provided path for a randomly generated stock, and then invokes any provided callback
 
     // Get a list of all available stocks
-    axios.get('http://localhost:3456/stocks/')
-      .then(({data}) => {
+    axios.get('http://robinshood-linegraph-dev.us-west-2.elasticbeanstalk.com/stocks/')
+      .then(({ data }) => {
         // Select a company from the list with index number equal to the ID in the url
         var idFromURL = window.location.pathname.split('/')[1];
-        var company = data[idFromURL-1];
+        var company = data[idFromURL - 1];
         if (idFromURL && !company) {
           console.log('Stock not found for ID ' + idFromURL);
         }
@@ -173,25 +173,25 @@ class App extends React.Component {
         this.setCompanyName(company.name);
         var ticker = company.ticker;
         // Get details for the selected company
-        axios.get(`http://localhost:3456/stocks/${ticker}`)
-          .then(({data}) => {
+        axios.get(`http://robinshood-linegraph-dev.us-west-2.elasticbeanstalk.com/stocks/${ticker}`)
+          .then(({ data }) => {
             this.setState({
-              analystBuy: (data.analystBuy*100).toFixed(0),
+              analystBuy: (data.analystBuy * 100).toFixed(0),
               platformOwners: data.platformOwners.toLocaleString()
             });
           });
         // Get price history for the selected company
-        axios.get(`http://localhost:3456/stocks/${ticker}/${path}`)
-          .then(({data}) => {
-            this.setTicker(ticker, () => {callback(data)});
+        axios.get(`http://robinshood-linegraph-dev.us-west-2.elasticbeanstalk.com/stocks/${ticker}/${path}`)
+          .then(({ data }) => {
+            this.setTicker(ticker, () => { callback(data) });
           });
       });
   }
 
   getYesterdayClose(callback) {
-  // Makes a get request specifically for yesterday's close price, and then invokes any provided callback
-    axios.get(`http://localhost:3456/stocks/${this.state.ticker}/yesterdayClose/`)
-      .then(({data}) => {callback(data)});
+    // Makes a get request specifically for yesterday's close price, and then invokes any provided callback
+    axios.get(`http://robinshood-linegraph-dev.us-west-2.elasticbeanstalk.com/stocks/${this.state.ticker}/yesterdayClose/`)
+      .then(({ data }) => { callback(data) });
   }
 
   render() {
@@ -242,11 +242,11 @@ class App extends React.Component {
             <InfoButton
               infoType="analystBuy"
               value={this.state.analystBuy + '%'}
-              text={this.state.analystBuy + '% of analysts agree that ' + this.state.companyName + ' is a buy.'} width="70px"/>
+              text={this.state.analystBuy + '% of analysts agree that ' + this.state.companyName + ' is a buy.'} width="70px" />
             <InfoButton
               infoType="platformOwners"
               value={this.state.platformOwners}
-              text={this.state.platformOwners + ' people own ' + this.state.companyName + ' on Robinshood.'} width="100px"/>
+              text={this.state.platformOwners + ' people own ' + this.state.companyName + ' on Robinshood.'} width="100px" />
           </CaptionsRight>
         </Captions>
 
@@ -263,7 +263,7 @@ class App extends React.Component {
           setRefStartPrice={this.setRefStartPrice}
           setLatestPrice={this.setLatestPrice}
           setLatestAfterHours={this.setLatestAfterHours}
-          tooltipY={tooltipY}/>
+          tooltipY={tooltipY} />
 
         <Options onClick={this.handleOptionClick}>
           <Option className="option" selected={this.state.selectedGraph === '1D'}>1D</Option>
